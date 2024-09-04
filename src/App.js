@@ -1,7 +1,10 @@
+import "./App.css";
+import PageContent from "./Components/PageContent";
+
 function App() {
   return (
     <div>
-      <h1>Crypto</h1>
+      <PageContent></PageContent>
     </div>
   );
 }
