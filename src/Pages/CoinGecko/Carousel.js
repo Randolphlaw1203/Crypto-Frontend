@@ -23,20 +23,26 @@ const CarouselItem = styled(Link)({
   color: "gold",
 });
 
+export function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function Carousel() {
   const [trending, setTrending] = useState([]);
-  const { currency } = CryptoState();
+  const { currency, symbol } = CryptoState();
 
   const fetchTrendingCoins = async () => {
     const { data } = await axios.get(TrendingCoins(currency));
     setTrending(data);
   };
 
+  console.log(trending)
+
   useEffect(() => {
     fetchTrendingCoins();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency]);
 
-  console.log(trending)
 
   const items = trending.map((coin) => {
     let profit = coin?.price_change_percentage_24h >= 0;
@@ -63,7 +69,7 @@ function Carousel() {
           </span>
         </span>
         <span style={{ fontSize: 22, fontWeight: 500 }}>
-          {/* {symbol} {numberWithCommas(coin?.current_price.toFixed(2))} */}
+          {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
         </span>
       </CarouselItem>
     );
@@ -91,8 +97,7 @@ function Carousel() {
         items={items}
         autoPlay
       />
-    </CarouselContainer>
-  );
+    </CarouselContainer>);
 };
 
 export default Carousel;

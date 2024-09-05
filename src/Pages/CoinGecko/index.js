@@ -12,6 +12,7 @@ import SideMenu from "../../Components/SideMenu";
 import Navbar from "../../Components/Navbar";
 import { CryptoState } from "../../Components/CryptoContext";
 import Carousel from "./Carousel";
+import CoinsTable from "./CoinsTable";
 
 const StyledTypography = styled(Typography)({
   flex: 1,
@@ -58,13 +59,14 @@ function CoinGecko() {
                 onChange={(e) => setCurrency(e.target.value)}
               >
                 <MenuItem value="USD">USD</MenuItem>
-                <MenuItem value="CNY">CNY</MenuItem>
+                <MenuItem value="HKD">HKD</MenuItem>
               </Select>
             </ThemeProvider>
           </Box>
           <Container>
             <Carousel />
           </Container>
+          <CoinsTable />
         </Box>
       </Box>
     </div>
