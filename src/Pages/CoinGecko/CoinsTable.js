@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { CoinList } from '../../API';
-import { CryptoState } from '../../Components/CryptoContext';
+import { CryptoState } from './CryptoContext';
 import {
   Container,
   LinearProgress,
@@ -18,21 +18,22 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { numberWithCommas } from './Carousel';
+import { useTheme } from '@emotion/react';
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  backgroundColor: "#ffffff",
+  backgroundColor: theme.palette.mode === 'dark' ? '#303030' : "white",
   cursor: "pointer",
   "&:hover": {
-    backgroundColor: "#fffff0",
+    backgroundColor: theme.palette.action.hover,
   },
   fontFamily: "Montserrat",
 }));
 
-const StyledPagination = styled(Pagination)({
+const StyledPagination = styled(Pagination)(({ theme }) => ({
   "& .MuiPaginationItem-root": {
-    color: "gold",
+    color: theme.palette.mode === 'dark' ? 'gold' : "black",
   },
-});
+}));
 
 function CoinsTable() {
   const [coins, setCoins] = useState([]);
@@ -41,6 +42,7 @@ function CoinsTable() {
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
   const { currency, symbol } = CryptoState();
+  const theme = useTheme();
 
   const fetchCoins = async () => {
     setLoading(true);
@@ -129,21 +131,27 @@ function CoinsTable() {
                         >
                           <span
                             style={{
-                              color: "darkgrey",
+                              color: theme.palette.mode === 'light' ? 'black' : 'white',
                               textTransform: "uppercase",
                               fontSize: 22,
                             }}
                           >
                             {row.symbol}
                           </span>
-                          <span style={{ color: "darkgrey" }}>
+                          <span
+                            style={{
+                              color: theme.palette.mode === 'light' ? 'black' : 'white',
+                            }}
+                          >
                             {row.name}
                           </span>
                         </div>
                       </TableCell>
                       <TableCell
                         align="right"
-                        style={{ color: "darkgrey" }}
+                        style={{
+                          color: theme.palette.mode === 'light' ? 'black' : 'white',
+                        }}
                       >
                         {symbol}{" "}
                         {numberWithCommas(row.current_price.toFixed(2))}
@@ -158,8 +166,11 @@ function CoinsTable() {
                         {profit && "+"}
                         {row.price_change_percentage_24h.toFixed(2)}%
                       </TableCell>
-                      <TableCell align="right"
-                        style={{ color: "darkgrey" }}
+                      <TableCell
+                        align="right"
+                        style={{
+                          color: theme.palette.mode === 'light' ? 'black' : 'white',
+                        }}
                       >
                         {symbol}{" "}
                         {numberWithCommas(
@@ -185,7 +196,7 @@ function CoinsTable() {
         }}
         onChange={(_, value) => {
           setPage(value);
-          window.scroll(0, 200);
+          window.scroll(0, 50);
         }}
       >
       </StyledPagination>

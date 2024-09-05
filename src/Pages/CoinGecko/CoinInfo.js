@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CryptoState } from '../../Components/CryptoContext';
+import { CryptoState } from './CryptoContext';
 import { HistoricalChart } from '../../API';
 import { CircularProgress, styled } from '@mui/material';
 import axios from 'axios';

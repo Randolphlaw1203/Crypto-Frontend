@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Navbar from "../../Components/Navbar";
-import { CryptoState } from "../../Components/CryptoContext";
+import { CryptoState } from "./CryptoContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";

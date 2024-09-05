@@ -1,16 +1,14 @@
 import {
   Box,
   Container,
-  createTheme,
   MenuItem,
   Select,
-  ThemeProvider,
   Typography
 } from "@mui/material";
 import { styled } from "@mui/system";
 import SideMenu from "../../Components/SideMenu";
 import Navbar from "../../Components/Navbar";
-import { CryptoState } from "../../Components/CryptoContext";
+import { CryptoState } from "./CryptoContext";
 import Carousel from "./Carousel";
 import CoinsTable from "./CoinsTable";
 
@@ -19,14 +17,6 @@ const StyledTypography = styled(Typography)({
   color: "gold",
   fontFamily: "Montserrat",
   fontWeight: "bold",
-});
-
-const themeMode = 'light';
-console.log('Coinpagemode:' + themeMode)
-const mtheme = createTheme({
-  palette: {
-    mode: themeMode,
-  }
 });
 
 function CoinGecko() {
@@ -48,20 +38,18 @@ function CoinGecko() {
           }}
           >
             <StyledTypography variant="h4">CoinGecko</StyledTypography>
-            <ThemeProvider theme={mtheme}>
-              <Select
-                variant="outlined"
-                sx={{
-                  width: 100,
-                  height: 40,
-                }}
-                value={currency}
-                onChange={(e) => setCurrency(e.target.value)}
-              >
-                <MenuItem value="USD">USD</MenuItem>
-                <MenuItem value="HKD">HKD</MenuItem>
-              </Select>
-            </ThemeProvider>
+            <Select
+              variant="outlined"
+              sx={{
+                width: 100,
+                height: 40,
+              }}
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+            >
+              <MenuItem value="USD">USD</MenuItem>
+              <MenuItem value="HKD">HKD</MenuItem>
+            </Select>
           </Box>
           <Container>
             <Carousel />
