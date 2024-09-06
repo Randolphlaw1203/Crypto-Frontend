@@ -14,6 +14,7 @@ import axios from "axios";
 import { SingleCoin } from "../../API";
 import CoinInfo from "./CoinInfo";
 import { numberWithCommas } from "./Carousel";
+import SideMenu from "../../Components/SideMenu";
 
 const StyledTypography = styled(Typography)({
   flex: 1,
@@ -99,6 +100,7 @@ function CoinPage() {
       <Navbar />
       <Box height={40} />
       <Box sx={{ display: 'flex' }}>
+        <SideMenu />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Box sx={{
             display: 'flex',

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { CryptoState } from './CryptoContext';
 import { HistoricalChart } from '../../API';
 import { CircularProgress, styled } from '@mui/material';
 import axios from 'axios';
@@ -7,6 +6,7 @@ import { Line } from 'react-chartjs-2';
 import 'chart.js/auto'
 import { chartDays } from '../../API/Data';
 import SelectButton from './SelectButton';
+import { CryptoState } from './CryptoContext';
 
 const StyledContainer = styled('div')(({ theme }) => ({
   width: "75%",
