@@ -18,10 +18,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { numberWithCommas } from './Carousel';
-import { useTheme } from '@emotion/react';
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#303030' : "white",
+  backgroundColor: 'white',
   cursor: "pointer",
   "&:hover": {
     backgroundColor: theme.palette.action.hover,
@@ -29,11 +28,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   fontFamily: "Montserrat",
 }));
 
-const StyledPagination = styled(Pagination)(({ theme }) => ({
+const StyledPagination = styled(Pagination)({
   "& .MuiPaginationItem-root": {
-    color: theme.palette.mode === 'dark' ? 'gold' : "black",
+    color: 'gold',
   },
-}));
+});
 
 function CoinsTable() {
   const [coins, setCoins] = useState([]);
@@ -42,7 +41,6 @@ function CoinsTable() {
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
   const { currency, symbol } = CryptoState();
-  const theme = useTheme();
 
   const fetchCoins = async () => {
     setLoading(true);
@@ -106,7 +104,7 @@ function CoinsTable() {
               {handleSearch()
                 .slice((page - 1) * 10, (page - 1) * 10 + 10)
                 .map((row) => {
-                  const profit = row.price_change_percentage_24h > 0;
+                  const profit = row.priceChangePercentage24h > 0;
                   return (
                     <StyledTableRow
                       onClick={() => navigate(`/coins/${row.id}`)}
@@ -131,7 +129,7 @@ function CoinsTable() {
                         >
                           <span
                             style={{
-                              color: theme.palette.mode === 'light' ? 'black' : 'white',
+                              color: 'black',
                               textTransform: "uppercase",
                               fontSize: 22,
                             }}
@@ -140,7 +138,7 @@ function CoinsTable() {
                           </span>
                           <span
                             style={{
-                              color: theme.palette.mode === 'light' ? 'black' : 'white',
+                              color: 'black',
                             }}
                           >
                             {row.name}
@@ -150,11 +148,11 @@ function CoinsTable() {
                       <TableCell
                         align="right"
                         style={{
-                          color: theme.palette.mode === 'light' ? 'black' : 'white',
+                          color: 'black',
                         }}
                       >
                         {symbol}{" "}
-                        {numberWithCommas(row.current_price.toFixed(2))}
+                        {numberWithCommas(row.currentPrice.toFixed(2))}
                       </TableCell>
                       <TableCell
                         align="right"
@@ -164,17 +162,17 @@ function CoinsTable() {
                         }}
                       >
                         {profit && "+"}
-                        {row.price_change_percentage_24h.toFixed(2)}%
+                        {row.priceChangePercentage24h.toFixed(2)}%
                       </TableCell>
                       <TableCell
                         align="right"
                         style={{
-                          color: theme.palette.mode === 'light' ? 'black' : 'white',
+                          color: 'black',
                         }}
                       >
                         {symbol}{" "}
                         {numberWithCommas(
-                          row.market_cap.toString().slice(0, -6)
+                          row.marketCap.toString().slice(0, -6)
                         )}
                         M
                       </TableCell>
@@ -196,7 +194,7 @@ function CoinsTable() {
         }}
         onChange={(_, value) => {
           setPage(value);
-          window.scroll(0, 50);
+          window.scroll(0, 200);
         }}
       >
       </StyledPagination>

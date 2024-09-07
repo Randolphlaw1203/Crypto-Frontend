@@ -5,16 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import CryptoContext from './Pages/CoinGecko/CryptoContext';
-import CustomTheme from './Components/Context/CustomTheme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <CustomTheme>
-      <CryptoContext>
-        <App />
-      </CryptoContext>
-    </CustomTheme>
+    <CryptoContext>
+      <App />
+    </CryptoContext>
   </BrowserRouter>
 );
 

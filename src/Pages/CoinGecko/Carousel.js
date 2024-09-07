@@ -20,7 +20,7 @@ const CarouselItem = styled(Link)({
   alignItems: "center",
   cursor: "pointer",
   textTransform: "uppercase",
-  //color: "white",
+  color: "gold",
 });
 
 export function numberWithCommas(x) {
@@ -43,9 +43,8 @@ function Carousel() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currency]);
 
-
   const items = trending.map((coin) => {
-    let profit = coin?.price_change_percentage_24h >= 0;
+    let profit = coin?.priceChangePercentage24h >= 0;
 
     return (
       <CarouselItem to={`/coins/${coin.id}`} key={coin.id}>
@@ -65,11 +64,11 @@ function Carousel() {
             }}
           >
             {profit && "+"}
-            {coin?.price_change_percentage_24h?.toFixed(2)}%
+            {coin?.priceChangePercentage24h?.toFixed(2)}%
           </span>
         </span>
         <span style={{ fontSize: 22, fontWeight: 500 }}>
-          {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
+          {symbol} {numberWithCommas(coin?.currentPrice.toFixed(2))}
         </span>
       </CarouselItem>
     );

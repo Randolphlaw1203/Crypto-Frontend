@@ -14,7 +14,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
-import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../AppStore';
 
@@ -46,32 +45,23 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme }) => ({
+  ({ theme, open }) => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
-    variants: [
-      {
-        props: ({ open }) => open,
-        style: {
-          ...openedMixin(theme),
-          '& .MuiDrawer-paper': openedMixin(theme),
-        },
-      },
-      {
-        props: ({ open }) => !open,
-        style: {
-          ...closedMixin(theme),
-          '& .MuiDrawer-paper': closedMixin(theme),
-        },
-      },
-    ],
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
   }),
 );
 
@@ -92,146 +82,48 @@ function SideMenu() {
         <Divider />
         <List>
           <ListItem disablePadding sx={{ display: 'block' }}
-            onClick={() => { navigate("/") }}>
+            onClick={() => { navigate("/"); }}
+          >
             <ListItemButton
               sx={[
-                {
-                  minHeight: 48,
-                  px: 2.5,
-                },
-                open
-                  ? {
-                    justifyContent: 'initial',
-                  }
-                  : {
-                    justifyContent: 'center',
-                  },
+                { minHeight: 48, px: 2.5 },
+                open ? { justifyContent: 'initial' } : { justifyContent: 'center' },
               ]}
             >
               <ListItemIcon
                 sx={[
-                  {
-                    minWidth: 0,
-                    justifyContent: 'center',
-                  },
-                  open
-                    ? {
-                      mr: 3,
-                    }
-                    : {
-                      mr: 'auto',
-                    },
-                ]}
-              >
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Home"
-                sx={[
-                  open
-                    ? {
-                      opacity: 1,
-                    }
-                    : {
-                      opacity: 0,
-                    },
-                ]}
-              />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding sx={{ display: 'block' }}
-            onClick={() => { navigate("/coingecko") }}>
-            <ListItemButton
-              sx={[
-                {
-                  minHeight: 48,
-                  px: 2.5,
-                },
-                open
-                  ? {
-                    justifyContent: 'initial',
-                  }
-                  : {
-                    justifyContent: 'center',
-                  },
-              ]}
-            >
-              <ListItemIcon
-                sx={[
-                  {
-                    minWidth: 0,
-                    justifyContent: 'center',
-                  },
-                  open
-                    ? {
-                      mr: 3,
-                    }
-                    : {
-                      mr: 'auto',
-                    },
+                  { minWidth: 0, justifyContent: 'center' },
+                  open ? { mr: 3 } : { mr: 'auto' },
                 ]}
               >
                 <CurrencyBitcoinIcon />
               </ListItemIcon>
               <ListItemText
                 primary="CoinGecko"
-                sx={[
-                  open
-                    ? {
-                      opacity: 1,
-                    }
-                    : {
-                      opacity: 0,
-                    },
-                ]}
+                sx={[open ? { opacity: 1 } : { opacity: 0 }]}
               />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding sx={{ display: 'block' }}
-            onClick={() => { navigate("/finnhub") }}>
+            onClick={() => { navigate("/finnhub"); }}
+          >
             <ListItemButton
               sx={[
-                {
-                  minHeight: 48,
-                  px: 2.5,
-                },
-                open
-                  ? {
-                    justifyContent: 'initial',
-                  }
-                  : {
-                    justifyContent: 'center',
-                  },
+                { minHeight: 48, px: 2.5 },
+                open ? { justifyContent: 'initial' } : { justifyContent: 'center' },
               ]}
             >
               <ListItemIcon
                 sx={[
-                  {
-                    minWidth: 0,
-                    justifyContent: 'center',
-                  },
-                  open
-                    ? {
-                      mr: 3,
-                    }
-                    : {
-                      mr: 'auto',
-                    },
+                  { minWidth: 0, justifyContent: 'center' },
+                  open ? { mr: 3 } : { mr: 'auto' },
                 ]}
               >
                 <LocalOfferIcon />
               </ListItemIcon>
               <ListItemText
                 primary="Finnhub"
-                sx={[
-                  open
-                    ? {
-                      opacity: 1,
-                    }
-                    : {
-                      opacity: 0,
-                    },
-                ]}
+                sx={[open ? { opacity: 1 } : { opacity: 0 }]}
               />
             </ListItemButton>
           </ListItem>
@@ -240,4 +132,5 @@ function SideMenu() {
     </Box>
   );
 }
+
 export default SideMenu;
