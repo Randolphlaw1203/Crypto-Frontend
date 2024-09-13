@@ -153,7 +153,7 @@ function CoinPage() {
                       fontFamily: "Montserrat",
                     }}
                   >
-                    {(coin?.market_cap_rank)}
+                    {(coin?.marketCapRank)}
                   </Typography>
                 </span>
                 <span style={{ display: "flex" }}>
@@ -169,7 +169,7 @@ function CoinPage() {
                   >
                     {symbol}{" "}
                     {numberWithCommas(
-                      coin?.market_data.current_price[currency.toLowerCase()]
+                      coin?.marketData.currentPrice[currency.toLowerCase()]
                     )}
                   </Typography>
                 </span>
@@ -186,7 +186,7 @@ function CoinPage() {
                   >
                     {symbol}{" "}
                     {numberWithCommas(
-                      coin?.market_data.market_cap[currency.toLowerCase()]
+                      coin?.marketData.marketCap[currency.toLowerCase()]
                         .toString()
                         .slice(0, -6)
                     )}
