@@ -55,7 +55,7 @@ function CoinInfo({ coin }) {
           <Line
             data={{
               labels: historicData.map((coin) => {
-                let date = new Date(coin[0]);
+                let date = new Date(coin.timeStamp);
                 let time =
                   date.getHours() > 12
                     ? `${date.getHours() - 12}:${date.getMinutes()} PM`
@@ -64,7 +64,7 @@ function CoinInfo({ coin }) {
               }),
               datasets: [
                 {
-                  data: historicData.map((coin) => coin[1]),
+                  data: historicData.map((coin) => coin.price),
                   label: `Price ( Past ${days} Days ) in ${currency}`,
                   borderColor: "#EEBC1D",
                 },

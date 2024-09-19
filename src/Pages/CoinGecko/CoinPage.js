@@ -110,7 +110,7 @@ function CoinPage() {
           }}>
             <StyledTypography
               variant="h4"
-              onClick={() => navigate(`/coingecko`)}
+              onClick={() => navigate(`/`)}
             >
               CoinGecko
             </StyledTypography>
